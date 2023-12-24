@@ -10,7 +10,7 @@ export const pagedAPICall = (page = 0, search = '', limit = 10) => {
 			// and get the page (10 items per page)
 
 			const movies = !search ? data.movies : data.movies.filter((movie) => {
-				return movie.plot.includes(search) || movie.title.includes(search) || movie.actors.includes(search);
+				return movie.plot.toLowerCase().includes(search.trim()) || movie.title.toLowerCase().includes(search.trim()) || movie.actors.toLowerCase().includes(search.trim());
 			});
 
 			const filteredMovies = movies.slice(page * PAGE_SIZE, (page +1) * PAGE_SIZE);
@@ -18,7 +18,10 @@ export const pagedAPICall = (page = 0, search = '', limit = 10) => {
 			resolve({
 				movies: filteredMovies,
 				genres: data.genres,
-				totalItems: data.movies.length,
+				count: {
+					moviesThatMatchFilter: movies.length,
+					totalMovies: data.movies.length
+				}
 			});
 		}, 200);
 	});

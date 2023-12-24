@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react';
 import './SearchPage.css';
 import {listAPICall} from '../api/listAPI';
 import {pagedAPICall} from '../api/pagedAPI';
