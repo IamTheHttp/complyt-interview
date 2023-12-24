@@ -1,6 +1,6 @@
 import data from './movies.json';
 
-export const pagedAPICall = (page = 0, search = '', limit = 10) => {
+export const pagedAPICall = (page = 0, search = '', limit = 100) => {
 	return new Promise((resolve) => {
 
 		const PAGE_SIZE = limit;
